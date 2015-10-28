@@ -1,0 +1,5 @@
+known issues:
+    1) On the Mac OS, the Frames open in the bottom left of the screen. This doesn't happen on Windows or Linux OS
+    2) Also on the Mac OS, the gameBoardFrame stretches to fit the screen. This doesn't happen on Windows or Linux OS
+    3) Not an issue but on Mac and Linux OS, the font "showcard Gothic" does not exist so it changes the look slightly,
+            nothing game breaking

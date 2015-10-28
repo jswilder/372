@@ -1,0 +1,93 @@
+// junit test for cpsc3720 project phase 1
+// tests that updates were written to a persistant database
+
+import static org.junit.Assert.*;
+import org.junit.*; 
+
+public class DataBaseTest {
+
+	private SListImpl1 pair;
+	private SListImpl1 pair1;
+	private SListImpl1 pair2;
+	private SListImpl1 pair3;
+	private SListImpl1 pair4;
+	
+	@Before
+	public void setUp() {
+		
+		// should be <> and <>
+		pair = new SListImpl1();
+		
+		pair1 = new SListImpl1();
+		pair2 = new SListImpl1();
+		pair3 = new SListImpl1();
+		pair4 = new SListImpl1();
+		
+		// should be <4,3> <2,1>
+		pair4.addRight(1);
+		pair4.addRight(2);
+		pair4.addRight(3);
+		pair4.addRight(4);
+		
+		pair4.advance();
+		pair4.advance();
+		
+		// should be <3,2> <3>
+		pair3.addRight(3);
+		pair3.addRight(2);
+		pair3.addRight(1);
+		pair3.advance();
+		pair3.advance();
+		
+		// should be <> <4>
+		pair2.addRight(4);
+		
+		//should be <5> <>
+		pair1.addRight(5);
+		pair1.advance();
+		
+	}
+	
+	@Test
+	public void testConstructor() {
+		assertEquals("(<>,<>)", pair.abstractToString());
+	}
+
+	@Test
+	public void testSendIssues() {
+		pair3.clear();
+		pair2.clear();
+		pair.clear();
+		
+		assertEquals("(<>,<>)", pair3.abstractToString());
+		assertEquals("(<>,<>)", pair2.abstractToString());
+		assertEquals("(<>,<>)", pair.abstractToString());
+	}
+	
+	@Test
+	public void testDeleteIssue() {
+		pair.addRight(6);
+		assertEquals("(<>,<6>)", pair.abstractToString());
+		
+		pair3.addRight(7);
+		assertEquals("(<1,2>,<7,3>)", pair3.abstractToString());
+		
+		pair2.addRight(8);
+		assertEquals("(<>,<8,4>)", pair2.abstractToString());
+	}
+	
+	@Test
+	public void testAddIssue() {
+		assertEquals(2, pair4.removeRight());
+		assertEquals(1, pair4.removeRight());
+		assertEquals(4, pair2.removeRight());
+	}
+	
+	
+	@Test
+	public void testEditIssue() {
+		assertEquals(2, pair4.getElementAt(0));
+		assertEquals(1, pair4.getElementAt(1));
+		assertEquals(4, pair2.getElementAt(0));
+	} 
+	
